@@ -11,4 +11,28 @@
 
 @implementation FISGithubRepository
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    if (!self) {
+        return nil;
+    }
+    
+    _fullName = dictionary[@"full_name"];
+    _repositoryID = dictionary[@"id"];
+    
+    NSString *urlString = dictionary[@"html_url"];
+    _htmlURL = [NSURL URLWithString:urlString];
+    
+    return self;
+}
+
+-(BOOL)isEqual:(FISGithubRepository*)object
+{    
+    if([object isKindOfClass:self.class]) return NO;
+
+    FISGithubRepository *otherRepo = object;
+    
+    return [self.repositoryID isEqual:object.repositoryID];
+}
+
 @end

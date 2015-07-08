@@ -10,5 +10,13 @@
 
 @interface FISGithubAPIClient : NSObject
 
+/**
+ *  Retreives a list of all of the repositories, and passes the NSArray of NSDictionaries to a completionBlock. 
+ *
+ *  @param I'm not sure of the inputs. Perhaps the API key and client secret?
+ *
+ *  @return NSArray OF DICTIONARIES (of Repos, from Github's JSON response).
+ */
+- (NSArray *)reposRetrieve:(NSJSONSerialization *)inputJSON;
 
 @end
