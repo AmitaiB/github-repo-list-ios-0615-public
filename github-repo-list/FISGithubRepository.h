@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *fullName;
 @property (nonatomic, strong) NSURL *htmlURL;
+#warning repoID might be an integer.
 @property (nonatomic, strong) NSString *repositoryID;
 
 /**
@@ -21,6 +22,7 @@
  *
  *  @return new instance of FISGitHubRepository
  */
-//+ (FISGithubRepository *)initWithDictionary:(NSDictionary *)repoInDictionaryFormat;
+- (FISGithubRepository *)initWithDictionary:(NSDictionary *)repoInDictionaryFormat;
+- (FISGithubRepository *)init;
 
 @end

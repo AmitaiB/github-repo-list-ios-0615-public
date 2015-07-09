@@ -26,6 +26,11 @@
     return self;
 }
 
+-(FISGithubRepository *)init 
+{
+    return [self initWithDictionary:nil];
+}
+
 -(BOOL)isEqual:(FISGithubRepository*)object
 {    
     if([object isKindOfClass:self.class]) return NO;

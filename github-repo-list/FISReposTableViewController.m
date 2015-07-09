@@ -12,7 +12,18 @@
 
 #define Client_ID 0c71979919867891f359
 #define Client_Secret 29ae7cdd8487829575b8c9b4d67b01f36126ee8c
-
+/**
+ To get a list of all repositories just do the following request:
+ 
+ GET https://api.github.com/repositories?client_id=YOUR_KEY&client_secret=YOUR_SECRET
+*/
+#pragma mark - Lab Instructions
+/** Lab instructions:
+ 1) In the FISGithubAPIClient create a method that retreives a list of all of the repositories, and passes the NSArray of NSDictionaries to a completionBlock. Do this with NSURLSession, not AFNetworking.
+ 2) Create a new method in FISGithubRepository that will take the NSDictionary representation of the repository and returns a new instance of FISGithubRepository all filled out.
+ 3) Add a method to FISGithubDataStore that uses FISGithubAPIClient to fill the repositories property with FISGithubRepository objects. In the completionBlock just pass back a BOOL success variable.
+ 4) In your FISReposTableViewController on viewDidLoad retreive the repos from the FISGithubDataStore and display them!
+ */
 @interface FISReposTableViewController ()
 @end
 
