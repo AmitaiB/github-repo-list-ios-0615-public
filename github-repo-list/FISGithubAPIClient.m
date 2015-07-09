@@ -36,7 +36,7 @@
     NSLog(@"After the dataTaskWithURL call");
     
 
-//    [task resume];                         
+    [task resume];                         
 
 
 }

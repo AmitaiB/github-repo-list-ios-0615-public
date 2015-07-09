@@ -32,13 +32,19 @@
     return self;
 }
 
--(void)populateRepoStoreWithCompletion:(void (^)(BOOL))block {
+-(void)populateRepoStoreWithCompletion:(void (^)(BOOL))block 
 {
     FISGithubAPIClient *APIClient = [[FISGithubAPIClient alloc] init];
     [APIClient getRepositoriesWithCompletion:^(NSArray *repositories) {
-        self.repositories = [repositories mutableCopy];
+        [self.repositories removeAllObjects];
         
-
+        [repositories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            FISGithubRepository *repoDictionary = [[FISGithubRepository alloc] initWithDictionary:obj];
+            [self.repositories addObject:repoDictionary];
+        }];
+        
+            //I don't get this part.
+        block(YES);
         
     }];
     

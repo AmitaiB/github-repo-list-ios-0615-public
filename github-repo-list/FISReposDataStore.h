@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) NSMutableArray *repositories;
 
-- (void)populateRepoStoreWithCompletion:(void (^)(BOOL))block;
++ (instancetype)sharedDataStore;
+    //why call it success?
+- (void)populateRepoStoreWithCompletion:(void (^)(BOOL success))block;
 
 @end

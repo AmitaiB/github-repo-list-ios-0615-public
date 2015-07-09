@@ -23,6 +23,9 @@ DONE 2) Create a new method in FISGithubRepository that will take the NSDictiona
  4) In your FISReposTableViewController on viewDidLoad retreive the repos from the FISGithubDataStore and display them!
  */
 @interface FISReposTableViewController ()
+
+@property (nonatomic, strong) NSArray *repositories;
+
 @end
 
 @implementation FISReposTableViewController
@@ -44,7 +47,17 @@ DONE 2) Create a new method in FISGithubRepository that will take the NSDictiona
     self.tableView.accessibilityLabel=@"Repo Table View";
     
         // FISGithubAPIClient *apiClient
-    [[FISReposDataStore]
+
+    [[FISReposDataStore sharedDataStore] populateRepoStoreWithCompletion:^void (BOOL success)
+    {
+        FISReposDataStore *dataStore = [FISReposDataStore sharedDataStore];
+        
+        self.repositories = dataStore.repositories;
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -68,7 +81,7 @@ DONE 2) Create a new method in FISGithubRepository that will take the NSDictiona
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.repositories.count;
     // Return the number of rows in the section.
 }
 
@@ -78,7 +91,9 @@ DONE 2) Create a new method in FISGithubRepository that will take the NSDictiona
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
+    FISGithubRepository *currentRepo = self.repositories[indexPath.row];
+    cell.textLabel.text = currentRepo.fullName;
+    NSLog(@"Inside the UITableViewCell, with repo: %@", currentRepo.fullName);
     return cell;
 }
 
