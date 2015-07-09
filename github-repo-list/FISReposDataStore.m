@@ -7,6 +7,9 @@
 //
 
 #import "FISReposDataStore.h"
+#import "FISGithubAPIClient.h"
+#import "FISGithubRepository.h"
+
 
 @implementation FISReposDataStore
 
@@ -27,6 +30,18 @@
         _repositories=[NSMutableArray new];
     }
     return self;
+}
+
+-(void)populateRepoStoreWithCompletion:(void (^)(BOOL))block {
+{
+    FISGithubAPIClient *APIClient = [[FISGithubAPIClient alloc] init];
+    [APIClient getRepositoriesWithCompletion:^(NSArray *repositories) {
+        self.repositories = [repositories mutableCopy];
+        
+
+        
+    }];
+    
 }
 
 
