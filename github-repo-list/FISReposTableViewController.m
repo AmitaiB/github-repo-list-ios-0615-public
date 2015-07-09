@@ -7,6 +7,11 @@
 //
 
 #import "FISReposTableViewController.h"
+#import "FISGithubAPIClient.h"
+#import "FISGithubRepository.h"
+
+#define Client_ID 0c71979919867891f359
+#define Client_Secret 29ae7cdd8487829575b8c9b4d67b01f36126ee8c
 
 @interface FISReposTableViewController ()
 @end
@@ -28,6 +33,9 @@
 
     self.tableView.accessibilityIdentifier = @"Repo Table View";
     self.tableView.accessibilityLabel=@"Repo Table View";
+    
+    FISGithubAPIClient *apiClient
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

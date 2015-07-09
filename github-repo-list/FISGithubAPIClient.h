@@ -17,6 +17,10 @@
  *
  *  @return NSArray OF DICTIONARIES (of Repos, from Github's JSON response).
  */
-- (NSArray *)reposRetrieve:(NSJSONSerialization *)inputJSON;
+
+    //void because it is asynchronous, and you cannot presume it will give you data reliably
+- (void)getRepositoriesWithCompletion:(void (^)(NSArray *repositories))completionBlock;
+
+
 
 @end
